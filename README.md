@@ -1,1 +1,1 @@
-# movie_watchlist_app
+A movie watchlist app that contains two pages - a search page and a watchlist page. On the search page, a user can add a movie to their watchlist. The watchlist page contains a list of the movies that have been added and keeps the information using local storage. The movie information is all provided from the OMDb API.

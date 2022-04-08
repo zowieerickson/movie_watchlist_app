@@ -29,8 +29,8 @@ main {
     height: 43vh;
 }
 
-h1, h2, h3 {
-    margin-top: 0;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
 
 .container {
@@ -54,8 +54,16 @@ h1, h2, h3 {
     align-items: center;
 }
 
+.flex {
+    display: flex;
+}
+
 .pd-btm-md {
     padding-bottom: 3em;
+}
+
+.mrg-rt-sml {
+    margin-right: .4em;
 }
 
 a {
@@ -104,9 +112,14 @@ input[type="button"] {
     background-color: #f1f3f5;
 }
 
-.search-tip {
+.search-msg {
+    text-align: center;
     color: #dfdddd;
-    margin-top: .6em
+    margin-top: .6em;
+}
+
+.search-tip {
+    margin-top: 0;
 }
 
 @media screen and (min-width: 500px) {

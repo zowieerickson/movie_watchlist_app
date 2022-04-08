@@ -11,10 +11,17 @@
     <header>
         <div class="container pd-btm-md">
             <h1 id="page-title">My Watchlist</h1>
-            <h3 id="watch-list"><a href="index.html">Search for movies</a></h3>
+            <h5 id="watch-list"><a href="index.html">Search for movies</a></h5>
         </div>
-        <input type="text" name="" id="search-movie" placeholder="Search for a movie">
+        <div class="container-search">
+            <input type="text" name="" id="search-movie" placeholder="Search for a movie">
+            <input type="button" value="Search" id="search-movie-btn">
+        </div>
     </header>
+    <main class="container-main">
+            <p class="search-msg">Your watchlist is looking a little empty...</p>
+            <p class="search-tip"><a class="flex" href="index.html"><img src="img/plus-add-icon.svg" alt="Addtion icon" class="mrg-rt-sml">Let's add some movies!</a></p>
+    </main>
     <script src="index.js"></script>
 </body>
 </html>

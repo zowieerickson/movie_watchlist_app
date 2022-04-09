@@ -23,11 +23,12 @@ header {
     background-position: center;
     color: #fff;
     height: 30vh;
+    min-height: calc(22.6px + 88px);
 }
 
 main {
     padding: 0 3em;
-    height: 43vh;
+    /* height: 43vh; */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -121,6 +122,46 @@ input[type="button"] {
 
 .search-tip {
     margin-top: 0;
+}
+
+.grandma-flex {
+    display: flex;
+    gap: 2em;
+    margin-bottom: 3em;
+}
+
+.parent-test-flex {
+    display: flex;
+    width: 100%;
+    padding-bottom: 2em;
+    border-bottom: 1.5px solid #E5E7EB;
+}
+
+.second-test-flex {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+.second-test-flex>p {
+    margin: 5px 0;
+    margin-right: 20px;
+}
+
+.movie-description {
+    margin: 5px 0;
+}
+
+.movie-poster {
+    margin-right: 1em;
+    max-width: 200px;
+    height: auto
+}
+
+.flex-col
+
+.movie-title {
+    font-weight: 500;
 }
 
 @media screen and (min-width: 500px) {

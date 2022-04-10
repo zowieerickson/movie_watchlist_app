@@ -116,6 +116,7 @@ input[type="button"] {
 
 .search-msg {
     text-align: center;
+    font-weight: 700;
     color: #dfdddd;
     margin-top: .6em;
 }
@@ -150,8 +151,10 @@ input[type="button"] {
     margin-right: 20px;
 }
 
-.movie-description {
+.movie-plot {
     margin: 5px 0;
+    color: #6B7280;
+    font-weight: 400;
 }
 
 .movie-poster {
@@ -169,6 +172,14 @@ input[type="button"] {
 
 .movie-star-icon {
     margin-right: .35em;
+}
+
+.black-color {
+    color: #272727
+}
+
+.read-more {
+    cursor: pointer;
 }
 
 @media screen and (min-width: 500px) {

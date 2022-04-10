@@ -9,7 +9,6 @@ let html = '';
 
 searchBtn.addEventListener("click", function() {
     searchQuery = searchText.value
-    console.log(searchQuery)
     html = ''
 
     fetch(`http://www.omdbapi.com/?apikey=c649a9b9&s=${searchQuery}&page=1&`)
@@ -41,10 +40,26 @@ searchBtn.addEventListener("click", function() {
                         </div>
                     </div>`;
                     moviesContainer.innerHTML = html;
+                    const readMore = document.querySelectorAll(".read-more");
+
+                    console.log(readMore)
+
+                    readMore.forEach(element => {
+                        element.addEventListener('click', (e) => {
+                            console.log('read more CLICKED');
+                            fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movieId}&page=1&plot=full`)
+                                .then(rsp => rsp.json())
+                                .then(data => {
+                                    // NOT WORKING YET, BUT SOMETHING IS HAPPENING!
+                                    console.log(element)
+                                    console.log(data);
+                                    document.querySelector(".movie-plot").innerHTML = data.Plot
+                                })
+                        })
+                    })
             })
         }
-        // console.log(moviesContainer.innerHTML)
-        
+
     })
 })
 
@@ -77,3 +92,4 @@ function strEllipsis(string) {
         return string;
     }
 }
+

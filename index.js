@@ -1,6 +1,7 @@
-const searchBtn = document.querySelector("#search-movie-btn")
-const searchText = document.querySelector("#search-movie")
-const moviesContainer = document.querySelector("#container-movies")
+const searchBtn = document.querySelector("#search-movie-btn");
+const searchText = document.querySelector("#search-movie");
+const moviesContainer = document.querySelector("#container-movies");
+const posterPlaceholder = 'img/poster-placeholder.png';
 let searchQuery;
 let movieId;
 let html = '';
@@ -24,7 +25,7 @@ searchBtn.addEventListener("click", function() {
                     console.log(data.Plot)
                     html += `
                     <div class="parent-test-flex">
-                        <img class="movie-poster" src="${data.Poster}" alt="">
+                        <img class="movie-poster" src="${data.Poster == 'N/A' ? posterPlaceholder : data.Poster}" alt="">
                         <div class="flex-col">
                             <div class="second-test-flex"> 
                                 <h2 class="movie-title">${data.Title}</h2>

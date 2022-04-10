@@ -33,7 +33,7 @@ searchBtn.addEventListener("click", function() {
                                 <p class="movie-rating">${data.imdbRating}</p>
                             </div>
                             <div class="second-test-flex">
-                                <p>${data.Year}</p>
+                                <p>${data.Runtime}</p>
                                 <p>${data.Genre}</p>
                                 <p class="movie-add"><a class="flex" href="index.html"><img src="img/plus-add-icon.svg" alt="Addtion icon" class="mrg-rt-sml">Watchlist</a></p>
                             </div>

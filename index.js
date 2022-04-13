@@ -5,6 +5,7 @@ const posterPlaceholder = 'img/poster-placeholder.png';
 let searchQuery;
 let movieId;
 let html = '';
+let movieArr = [];
 let readMoreIdArr = [];
 let readMore;
 
@@ -13,45 +14,44 @@ let readMore;
 
 searchBtn.addEventListener("click", function() {
     searchQuery = searchText.value
-
+    html = '';
     fetch(`http://www.omdbapi.com/?apikey=c649a9b9&s=${searchQuery}&page=1&`)
     .then(rsp => rsp.json())
     .then(data => {
         const movies = data.Search;
         for (let movie of movies) {
-            movieId = movie.imdbID
-            fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movieId}&page=1`)
+            fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movie.imdbID}&page=1`)
                 .then(rsp => rsp.json())
                 .then(data => {
-
+                    console.log(movie.imdbID)
                     createMovieHTML(data)
                     moviesContainer.innerHTML = html;
-
-                    // if (data.Plot.length > 230) {
-                    //     readMoreIdArr.push(data.imdbID);
-                    //     console.log(readMoreIdArr)
-                    //     fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movieId}&page=1&plot=full`)
-                    //         .then(rsp => rsp.json())
-                    //         .then(data => console.log)
-                    // }
-                    
-                    // readMore = document.querySelectorAll(".read-more");
-                    // readMore.forEach(element => {
-                    //     element.addEventListener('click', (e) => {
-                    //         fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movieId}&page=1&plot=full`)
-                    //             .then(rsp => rsp.json())
-                    //             .then(data => {
-                    //                 console.log(data);
-                    //                 console.log(data.length)
-                    
-                    //                 document.querySelector(".movie-plot").innerHTML = data.Plot
-                    //             })
-                    //     })
-                    // })
-
+                    if (data.Plot.length > 230) {
+                        fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movie.imdbID}&page=1&plot=full`)
+                            .then(rsp => rsp.json())
+                            .then(data => {
+                                console.log(data)
+                                const fullPlot = data.Plot;
+                                movieArr.push(data)
+                                console.log(movieArr)
+                                // readMoreIdArr.push(fullPlot)
+                                // console.log(readMoreIdArr)
+                                readMore = document.querySelectorAll(".read-more");
+                                readMore.forEach(ele => {
+                                    ele.addEventListener("click", (e) => {
+                                        console.log(e.target.parentElement.parentElement)
+                                        console.log(readMoreIdArr)
+                                        // e.target.parentElement.parentElement.innerHTML = fullPlot
+                                        // const title = e.target.parentElement.parentElement.closest(".movie-title")
+                                        for (let i = 0; i < readMoreIdArr.length; i++) {
+                                            console.log("uhh hi?")
+                                        }
+                                    })
+                                })
+                            })
+                    }
                 })
             }
-
     })
 })
 
@@ -88,18 +88,32 @@ function createMovieHTML(data) {
 
 
 
+// Readmore functionality
+    // readMore = document.querySelectorAll(".read-more");
+    // readMore.forEach(element => {
+    //     element.addEventListener('click', (e) => {
+    //         fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movieId}&page=1&plot=full`)
+    //             .then(rsp => rsp.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 console.log(data.length)
+    
+    //                 document.querySelector(".movie-plot").innerHTML = data.Plot
+    //             })
+    //     })
+    // })
 
 
 // Add this later once searchBtn click listener is finished
-// searchText.addEventListener("keypress", function(e) {
-//     if (e.key === 'Enter') {
-//         searchQuery = searchText.value
+    // searchText.addEventListener("keypress", function(e) {
+    //     if (e.key === 'Enter') {
+    //         searchQuery = searchText.value
 
-//         fetch(`http://www.omdbapi.com/?apikey=c649a9b9&t=${searchQuery}`)
-//         .then(rsp => rsp.json())
-//         .then(data => {
-//             html += `<img src=${data.Poster}>`
-//             document.querySelector("#container-movies").innerHTML = html;
-//         })
-//     }
-// })
+    //         fetch(`http://www.omdbapi.com/?apikey=c649a9b9&t=${searchQuery}`)
+    //         .then(rsp => rsp.json())
+    //         .then(data => {
+    //             html += `<img src=${data.Poster}>`
+    //             document.querySelector("#container-movies").innerHTML = html;
+    //         })
+    //     }
+    // })

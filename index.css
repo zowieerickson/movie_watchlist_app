@@ -182,6 +182,11 @@ input[type="button"] {
     cursor: pointer;
 }
 
+.movie-add {
+    display: flex;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 500px) {
     .container {
         flex-direction: row;

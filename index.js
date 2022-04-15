@@ -1,11 +1,14 @@
 const searchBtn = document.querySelector("#search-movie-btn");
 const searchText = document.querySelector("#search-movie");
 const moviesContainer = document.querySelector("#container-movies");
+const watchlistMoviesContainer = document.querySelector("#container-watchlist-movies")
+console.log(watchlistMoviesContainer)
 const posterPlaceholder = 'img/poster-placeholder.png';
 let searchQuery;
 // let movieId;
 // let html = '';
-// let movieArr = [];
+let movieArr = [];
+let savedMoviesArr = [];
 // let readMoreIdArr = [];
 // let readMore;
 // let watchlistBtn;
@@ -122,7 +125,9 @@ let searchQuery;
 
 let html;
 
-searchBtn.addEventListener("click", handleSearchClick)
+if (searchBtn) {
+    searchBtn.addEventListener("click", handleSearchClick)
+}
 
 
 async function handleSearchClick() {
@@ -135,11 +140,12 @@ async function handleSearchClick() {
         // console.log(movie)
         const response2 = await fetch(`http://www.omdbapi.com/?apikey=c649a9b9&i=${movie.imdbID}&page=1`);
         const data2 = await response2.json();
-        console.log(data);
-        console.log(data2);
+        // console.log(data);
+        // console.log(data2);
+        movieArr.push(data2)
         createMovieHTML(data2);
-        moviesContainer.innerHTML = html
     }
+    moviesContainer.innerHTML = html
     // console.log(data);
 }
 
@@ -164,6 +170,36 @@ function createMovieHTML(data) {
 
     return html
 }
+
+document.body.addEventListener('click', function (e) {
+    const target = e.target
+    if(target.className == 'movie-add') {
+        const movieTitle = target.parentElement.previousElementSibling.querySelector('.movie-title').textContent
+        const found = movieArr.find(element => element.Title = movieTitle);
+        console.log(`found ${found}`)
+        savedMoviesArr.push(found)
+        console.log(savedMoviesArr)
+        localStorage.setItem(JSON.stringify(found.Title), JSON.stringify(found));
+        console.log(localStorage)
+
+        const storedObject = JSON.parse(localStorage.getItem("IDK"))
+        console.log(storedObject.Actors);
+
+        // const movies = savedMoviesArr
+        // console.log(movies)
+
+        // for (let movie of movies) {
+        //     console.log(movie)
+        // }
+
+        // let uniqueMovies = [...new Set(savedMoviesArr)]
+        // console.log(uniqueMovies)
+
+        // console.log(target.parentElement.parentElement.chi)
+        // localStorage.setItem("name", "zowie")
+        // console.log(localStorage)
+    };
+  });
 
 // function strEllipsis(string) {
 //     strLength = string.length;

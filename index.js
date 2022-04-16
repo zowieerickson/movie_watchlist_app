@@ -174,30 +174,19 @@ function createMovieHTML(data) {
 document.body.addEventListener('click', function (e) {
     const target = e.target
     if(target.className == 'movie-add') {
+        console.log(movieArr)
+
         const movieTitle = target.parentElement.previousElementSibling.querySelector('.movie-title').textContent
         const found = movieArr.find(element => element.Title = movieTitle);
-        console.log(`found ${found}`)
+        console.log(found)
         savedMoviesArr.push(found)
         console.log(savedMoviesArr)
         localStorage.setItem(JSON.stringify(found.Title), JSON.stringify(found));
         console.log(localStorage)
 
-        const storedObject = JSON.parse(localStorage.getItem("IDK"))
-        console.log(storedObject.Actors);
+        const storedObject = JSON.parse(localStorage.getItem("Star Wars"))
+        console.log(storedObject);
 
-        // const movies = savedMoviesArr
-        // console.log(movies)
-
-        // for (let movie of movies) {
-        //     console.log(movie)
-        // }
-
-        // let uniqueMovies = [...new Set(savedMoviesArr)]
-        // console.log(uniqueMovies)
-
-        // console.log(target.parentElement.parentElement.chi)
-        // localStorage.setItem("name", "zowie")
-        // console.log(localStorage)
     };
   });
 
@@ -209,3 +198,5 @@ document.body.addEventListener('click', function (e) {
 //         return string;
 //     }
 // }
+
+// localStorage.clear();

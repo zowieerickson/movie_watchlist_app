@@ -124,6 +124,7 @@ let savedMoviesArr = [];
     // })
 
 let html;
+let oldData;
 
 if (searchBtn) {
     searchBtn.addEventListener("click", handleSearchClick)
@@ -162,7 +163,7 @@ function createMovieHTML(data) {
             <div class="second-test-flex">
                 <p>${data.Runtime}</p>
                 <p>${data.Genre}</p>
-                <p class="movie-add"><img src="img/plus-add-icon.svg" alt="Addtion icon" class="mrg-rt-sml">Watchlist</p>
+                <p id=${data.imdbID} class="movie-add"><img src="img/plus-add-icon.svg" alt="Addtion icon" class="mrg-rt-sml">Watchlist</p>
             </div>
             <p class="movie-plot">${(data.Plot)}</p>
         </div>
@@ -174,21 +175,44 @@ function createMovieHTML(data) {
 document.body.addEventListener('click', function (e) {
     const target = e.target
     if(target.className == 'movie-add') {
-        console.log(movieArr)
-
         const movieTitle = target.parentElement.previousElementSibling.querySelector('.movie-title').textContent
         const found = movieArr.find(element => element.Title = movieTitle);
         console.log(found)
-        savedMoviesArr.push(found)
-        console.log(savedMoviesArr)
-        localStorage.setItem(JSON.stringify(found.Title), JSON.stringify(found));
+        // localStorage.setItem(JSON.stringify(found.Title), JSON.stringify(found));
         console.log(localStorage)
+        console.log(localStorage.length)
 
-        const storedObject = JSON.parse(localStorage.getItem("Star Wars"))
-        console.log(storedObject);
+        // if there is nothing saved at the start then save an empty array
+        if (localStorage.getItem('data') == null) {
+            localStorage.setItem('data', '[]');
+        }
+
+        // get old data and add it to the new data
+        let oldData = JSON.parse(localStorage.getItem('data'));
+        oldData.push(found)
+        console.log(oldData)
+
+        // save the old + new data to local storage
+        localStorage.setItem('data', JSON.stringify(oldData))
+
+        console.log(typeof oldData)
 
     };
   });
+
+  function viewLocalStorage() {
+      if (localStorage.getItem('data') != null) {
+          let yo = JSON.parse(localStorage.getItem('data'))
+          for (let i = 0; i < yo.length; i++) {
+              console.log(yo[i])
+              createMovieHTML(yo[i])
+          }
+          console.log(yo)
+          document.querySelector("#container-watchlist-movies").innerHTML = html
+      }
+  }
+
+//   viewLocalStorage()
 
 // function strEllipsis(string) {
 //     strLength = string.length;
